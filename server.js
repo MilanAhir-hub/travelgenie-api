@@ -6,6 +6,9 @@ import connectDB from './config/db.js';
 // import routes
 import hotelRoutes from './routes/hotelRoutes.js';
 import placeRoutes from './routes/placeRoutes.js';
+import tripRoutes from './routes/tripRoutes.js';
+import transportRoutes from './routes/transportRoutes.js';
+import weatherRoutes from './routes/weatherRoutes.js';
 
 dotenv.config();
 
@@ -23,6 +26,9 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/api/hotels', hotelRoutes);
 app.use('/api/places', placeRoutes);
+app.use('/api/trip-plan', tripRoutes);
+app.use('/api/transport', transportRoutes);
+app.use('/api/weather', weatherRoutes);
 
 // Connect DB and start server
 const port = process.env.PORT || 5000;

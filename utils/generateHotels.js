@@ -34,6 +34,10 @@ const generateHotels = async() =>{
         'Mysuru'
     ];
 
+    const amenities = [
+        'Wifi','Pool', 'Parking', 'Breakfast', 'AC', 'Spa'
+    ];
+
     for(let i = 0; i<500; i++){
         const city = faker.helpers.arrayElement(cities);
 
@@ -55,7 +59,7 @@ const generateHotels = async() =>{
             country: 'India',
             address: faker.location.streetAddress(),
             pricePerNight: faker.number.int({min: 1500, max: 9000}),
-            amenities: faker.helpers.arrayElements([], faker.number.int({min: 2, max: 5})),
+            amenities: faker.helpers.arrayElements(amenities, faker.number.int({min: 2, max: 5})),
             email: faker.internet.email(),
             phone: faker.phone.number(),
             imageURL: faker.helpers.arrayElement(hotelImages),

@@ -1,4 +1,4 @@
-const placeImagesByCity = {
+export const placeImagesByCity = {
     Manali: [
         "https://images.unsplash.com/photo-1712388430474-ace0c16051e2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFuYWxpfGVufDB8fDB8fHww",
         "https://images.unsplash.com/photo-1641796746248-a446eef34a74?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D",
@@ -35,3 +35,4 @@ const placeImagesByCity = {
         "https://images.pexels.com/photos/19149609/pexels-photo-19149609.jpeg"
     ]
 };
+
