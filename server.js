@@ -9,6 +9,7 @@ import placeRoutes from './routes/placeRoutes.js';
 import tripRoutes from './routes/tripRoutes.js';
 import transportRoutes from './routes/transportRoutes.js';
 import weatherRoutes from './routes/weatherRoutes.js';
+import authRoutes from './routes/auth/authRoutes.js';
 
 dotenv.config();
 
@@ -26,9 +27,10 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/api/hotels', hotelRoutes);
 app.use('/api/places', placeRoutes);
-app.use('/api/trip-plan', tripRoutes);
+app.use('/api/trip', tripRoutes);
 app.use('/api/transport', transportRoutes);
 app.use('/api/weather', weatherRoutes);
+app.use('/api/auth', authRoutes);
 
 // Connect DB and start server
 const port = process.env.PORT || 5000;

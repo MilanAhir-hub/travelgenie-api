@@ -20,8 +20,8 @@ export async function buildTripData(userInput){
     const transportCost = calculateTransportCost(distanceKm, transportType);
 
     //let get places and hotels from the database
-    const places = await Place.find({destination}).limit(5);
-    const hotels = await Hotel.find({destination});
+    const places = await Place.find({city: destination}).limit(3);
+    const hotels = await Hotel.find({city: destination});
 
     const selectedHotel = hotels.find(h => h.type === tripType) || hotels[0];
 
@@ -49,7 +49,7 @@ export async function buildTripData(userInput){
             stayCost
         },
         places_to_visit: places.map(p =>({
-            name: p.name,
+            name: p.placeName,
             category: p.category,
             description: p.description
         })),
