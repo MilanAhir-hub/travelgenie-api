@@ -15,7 +15,9 @@ function cleanAIResponse(text) {
 
 export async function getGeminiResponse(prompt){
     try {
-        const model = genAI.getGenerativeModel({model: "gemini-pro-latest"});
+        const model = genAI.getGenerativeModel({
+            model: "gemini-2.5-flash"
+        });
 
         const result = await model.generateContent(prompt);
 

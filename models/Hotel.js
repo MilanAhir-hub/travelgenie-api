@@ -28,7 +28,13 @@ const hotelSchema = new mongoose.Schema({
     amenities:[{type: String}],
     email:{type: String, required: true},
     phone:{type: String, required: true},
-    imageURL: {type: String, required: true},
+     imageURL: {
+             type: String,
+             required: true
+         }, // main image
+         images: [{
+             type: String
+         }],
     //Location auto later using API
     location:{
         lat: {type: Number, default: null},

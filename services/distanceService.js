@@ -1,4 +1,3 @@
-import { ne } from '@faker-js/faker';
 import axios from 'axios';
 
 const ORS_API_KEY = process.env.ORS_API_KEY;

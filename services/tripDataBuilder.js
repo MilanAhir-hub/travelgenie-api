@@ -1,6 +1,6 @@
 import { getCoordinatesByCity, getDistanceKm, calculateTransportCost } from "./distanceService.js";
 
-import { getWeather } from "./whetherService.js";
+import { getWeather } from "./weatherService.js";
 import Hotel from "../models/Hotel.js";
 import Place from "../models/Place.js";
 
@@ -21,7 +21,19 @@ export async function buildTripData(userInput){
 
     //let get places and hotels from the database
     const places = await Place.find({city: destination}).limit(3);
-    const hotels = await Hotel.find({city: destination});
+    let hotels = await Hotel.find({city: destination});
+
+    // Filter hotels that fit within the total budget (assuming hotel cost shouldn't exceed total budget)
+    if (budget && days) {
+        hotels = hotels.filter(h => (h.pricePerNight * days) <= budget);
+    }
+
+    // Deduplicate hotels by name
+    hotels = hotels.filter((hotel, index, self) =>
+        index === self.findIndex((t) => (
+            t.hotelName === hotel.hotelName
+        ))
+    );
 
     const selectedHotel = hotels.find(h => h.type === tripType) || hotels[0];
 
@@ -53,6 +65,7 @@ export async function buildTripData(userInput){
             category: p.category,
             description: p.description
         })),
-        weather: weatherData
+        weather: weatherData,
+        hotels: hotels // Return all fetched hotels
     }
 }

@@ -38,13 +38,20 @@ export async function generateTripPlan(req, res){
         //now get the gemini ai response
         const aiResponse = await getGeminiResponse(prompt);
 
-        //parse the json because the data from the gemini is in the json format and we have to convert it into the string format
-
-        const finalPlan = JSON.parse(aiResponse);
+        //parse the json
+        let finalPlan;
+        try {
+            finalPlan = JSON.parse(aiResponse);
+        } catch (jsonError) {
+             console.error("JSON Parse Error:", jsonError);
+             console.log("Raw AI Response:", aiResponse); // Log raw for debugging
+             throw new Error("Failed to parse AI response into JSON");
+        }
 
         res.status(200).json({
             success: true,
-            trip_plan: finalPlan
+            trip: finalPlan,
+            hotels: tripData.hotels // Send the real hotels from DB
         });
     } catch (error) {
         console.log("Error at tripController.js");

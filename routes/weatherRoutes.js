@@ -1,5 +1,5 @@
 import express from 'express';
-import { getWeather } from '../services/whetherService.js';
+import { getWeather } from '../services/weatherService.js';
 
 const router = express.Router();
 
